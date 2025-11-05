@@ -1,0 +1,12 @@
+--DB DROP
+DROP DATABASE db_name;
+
+--TABLE DROP
+DROP TABLE table_name;
+
+--VIEW DROP 
+DROP VIEW sudo_column_name;
+
+--DROP SCHEMA
+DROP SCHEMA public;
+DROP SCHEMA CASCADE;

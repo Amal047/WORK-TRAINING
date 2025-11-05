@@ -1,0 +1,93 @@
+DELETE 1
+demo_db=# SELECT * FROM employee;
+ id | name | salary | department
+----+------+--------+------------
+  1 | Amal |  20000 |
+(1 row)
+
+
+demo_db=# UPDATE employee SET department = 'IT' WHERE id = 1;
+UPDATE 1
+demo_db=# SELECT * FROM employee;
+ id | name | salary | department
+----+------+--------+------------
+  1 | Amal |  20000 | IT
+(1 row)
+
+
+demo_db=# \d employee
+                                     Table "public.employee"
+   Column   |         Type          | Collation | Nullable |               Default
+------------+-----------------------+-----------+----------+--------------------------------------
+ id         | integer               |           | not null | nextval('employee_id_seq'::regclass)
+ name       | character varying(50) |           |          |
+ salary     | numeric               |           |          |
+ department | character varying(30) |           |          |
+Indexes:
+    "employee_pkey" PRIMARY KEY, btree (id)
+
+
+demo_db=# SELECT * FROM employee WHERE department = 'IT';
+ id | name | salary | department
+----+------+--------+------------
+  1 | Amal |  20000 | IT
+(1 row)
+
+
+demo_db=# \di
+                  List of relations
+ Schema |     Name      | Type  |  Owner   |  Table
+--------+---------------+-------+----------+----------
+ public | employee_pkey | index | postgres | employee
+(1 row)
+
+
+demo_db=# CREATE INDEX idx_salary ON employee(salary);
+CREATE INDEX
+demo_db=# \di
+                  List of relations
+ Schema |     Name      | Type  |  Owner   |  Table
+--------+---------------+-------+----------+----------
+ public | employee_pkey | index | postgres | employee
+ public | idx_salary    | index | postgres | employee
+(2 rows)
+
+
+demo_db=# SELECT * FROM employee                         
+demo_db-# CREATE INDEX idx_salary ON employee(salary);
+ERROR:  syntax error at or near "CREATE"
+LINE 2: CREATE INDEX idx_salary ON employee(salary);
+        ^
+demo_db=# SELECT * FROM employee WHERE department = 'IT';
+ id | name | salary | department
+----+------+--------+------------
+  1 | Amal |  20000 | IT
+(1 row)
+
+
+demo_db=# DROP INDEX idx_salary;
+DROP INDEX
+demo_db=# \di
+                  List of relations
+ Schema |     Name      | Type  |  Owner   |  Table
+--------+---------------+-------+----------+----------
+ public | employee_pkey | index | postgres | employee
+(1 row)
+
+
+demo_db=# TRUNCATE TABLE employee;
+TRUNCATE TABLE
+demo_db=# TRUNCATE TABLE employee RESTART IDENTITY;
+TRUNCATE TABLE
+demo_db=# SELECT * FROM employee                         
+demo_db-# SELECT * FROM employee;
+ERROR:  syntax error at or near "SELECT"
+LINE 2: SELECT * FROM employee;
+        ^
+demo_db=# SELECT * FROM employee;                                                         
+ id | name | salary | department
+----+------+--------+------------
+(0 rows)
+
+
+demo_db=#
