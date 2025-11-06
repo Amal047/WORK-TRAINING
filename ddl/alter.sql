@@ -6,6 +6,10 @@ ALTER TABLE table_name
 ADD COLUMN column_name 
 VARCHAR(30);
 
+--DROP
+ALTER TABLE table_name
+DROP COLUMN column_name;
+
 --RENAME
 ALTER TABLE table_name RENAME COLUMN column_name TO new_column_name;
 
